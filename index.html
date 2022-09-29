@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Star</title>
+		<meta charset="UTF-8">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<!-- <span>starの4文字を☆に変えるクソコード</span><br> -->
+		<input type="text" id="ch_text" value="star"><span>→</span><input type="text" id="ch_sym" value="☆"><br>
+		<textarea></textarea> <button id="change">変換</button><br>
+		<table id="results">
+			<tr>
+				<td>変換前</td><td>変換後</td>
+			</tr>
+		</table>
+
+		<script> // window.onload が省略できるのでここに書いている
+			$("button#change").click(e => {
+				let text = $("textarea").val();
+				if (text.length <= 0) { //  || $("input#ch_text").val().length <= 0 || $("input#ch_sym").val().length <= 0
+					window.alert("入力されていない場所があります");
+					return;
+				}
+				res = "";
+				for (let i = 0; i < text.length; i++) {
+					if ($("input#ch_text").val().indexOf(text[i].toLowerCase()) == -1) {
+						res += text[i];
+					} else {
+						res += $("input#ch_sym").val();
+					}
+				}
+				$("<tr>").html(`<td>${text}</td><td>${res}</td>`).appendTo("table#results");
+				// $("textarea").val("");
+			})
+		</script>
+	</body>
+</html>
